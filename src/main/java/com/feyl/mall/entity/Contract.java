@@ -2,6 +2,8 @@ package com.feyl.mall.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -45,6 +47,10 @@ public class Contract implements Serializable {
     @ApiModelProperty(value = "零售商表零售商ID")
     @TableField("retailer_id")
     private Long retailerId;
+
+    @ApiModelProperty(value = "商品总价格")
+    @TableField("total_price")
+    private BigDecimal totalPrice;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
     @TableField("is_deleted")

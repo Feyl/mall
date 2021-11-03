@@ -43,7 +43,7 @@ public class Accessory implements Serializable {
     @TableField("price")
     private BigDecimal price;
 
-    @ApiModelProperty(value = "水果表水果ID")
+    @ApiModelProperty(value = "商品表商品ID")
     @TableField("fruit_id")
     private Long fruitId;
 

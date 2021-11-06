@@ -17,6 +17,6 @@ import java.io.IOException;
 public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse resp, AuthenticationException e) throws IOException, ServletException {
-        ResponseUtil.out(resp, R.error().message("未授权"));
+        ResponseUtil.out(resp, R.unauthorized());
     }
 }

@@ -42,6 +42,10 @@ public class Retailer implements Serializable {
     @TableField("telephone")
     private String telephone;
 
+    @ApiModelProperty(value = "邮政编码")
+    @TableField("postal_code")
+    private String postalCode;
+
     @ApiModelProperty(value = "地址")
     @TableField("address")
     private String address;
@@ -51,7 +55,7 @@ public class Retailer implements Serializable {
     private Integer status;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
-    @TableField("is_deleted")
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     @TableLogic
     private Integer isDeleted;
 

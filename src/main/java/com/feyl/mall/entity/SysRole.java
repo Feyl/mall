@@ -39,7 +39,7 @@ public class SysRole implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
-    @TableField("is_deleted")
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     @TableLogic
     private Integer isDeleted;
 

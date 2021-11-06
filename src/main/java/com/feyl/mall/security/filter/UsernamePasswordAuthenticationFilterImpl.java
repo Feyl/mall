@@ -51,11 +51,11 @@ public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAu
         SecurityUser user = (SecurityUser) authResult.getPrincipal();
         String token = JwtUtil.getJwtToken(user.getUsername());
         redisTemplate.opsForValue().set("token:"+token,"");
-        ResponseUtil.out(resp, R.ok().data("token",token));
+        ResponseUtil.out(resp, R.success("token",token));
     }
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest req, HttpServletResponse resp, AuthenticationException failed) throws IOException, ServletException {
-        ResponseUtil.out(resp, R.error().message("账号信息有误,请检查账号或密码是否正确"));
+        ResponseUtil.out(resp, R.unauthorized("账号信息有误,请检查用户名或密码是否正确"));
     }
 }

@@ -47,9 +47,21 @@ public class Contract implements Serializable {
     @TableField("retailer_id")
     private Long retailerId;
 
-    @ApiModelProperty(value = "合同金额")
-    @TableField("money")
-    private BigDecimal money;
+    @ApiModelProperty(value = "商品金额")
+    @TableField("product_money")
+    private BigDecimal productMoney;
+
+    @ApiModelProperty(value = "配送方式")
+    @TableField("transport_way")
+    private String transportWay;
+
+    @ApiModelProperty(value = "物流单号")
+    @TableField("transport_number")
+    private String transportNumber;
+
+    @ApiModelProperty(value = "运费")
+    @TableField("transport_expense")
+    private BigDecimal transportExpense;
 
     @ApiModelProperty(value = "支付方式：0未支付/1微信支付/2支付宝")
     @TableField("payment")
@@ -64,7 +76,7 @@ public class Contract implements Serializable {
     private String remark;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
-    @TableField("is_deleted")
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     @TableLogic
     private Integer isDeleted;
 

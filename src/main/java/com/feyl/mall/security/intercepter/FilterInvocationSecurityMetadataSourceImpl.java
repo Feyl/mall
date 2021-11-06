@@ -20,6 +20,7 @@ import java.util.*;
 public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocationSecurityMetadataSource {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
+
     @Autowired
     SysRolePermissionService sysRolePermissionService;
 
@@ -29,8 +30,9 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
         Map<String, List<String>> permissionRoles = sysRolePermissionService.selectPermissionRoles();
         String requestUrl = ((FilterInvocation) o).getRequestUrl();
         if(antPathMatcher.match("/admin/user/**",requestUrl)){
-            attributes.add(new SecurityConfig("user"));
-            attributes.add(new SecurityConfig("admin"));
+            attributes.add(new SecurityConfig("MerchandiseManager"));
+            attributes.add(new SecurityConfig("Retailer"));
+            attributes.add(new SecurityConfig("Administrator"));
         }else{
             Set<String> urls = permissionRoles.keySet();
             for (String url:urls){
@@ -42,6 +44,7 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
                 }
             }
         }
+        //如果不加这个，没有权限的会直接执行
         if (ObjectUtils.isEmpty(attributes)){
             return SecurityConfig.createList("ROLE_NO_AUTHORITY");
         }

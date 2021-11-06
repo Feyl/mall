@@ -1,6 +1,9 @@
 package com.feyl.mall.common.result;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,71 +14,119 @@ import java.util.Map;
  */
 //统一返回的数据格式
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class R<T> {
-    //是否成功
-    private Boolean success;
 
-    //返回的状态码
-    private Integer code;
+    /**
+     * 状态码
+     */
+    private long code;
 
-    //返回的消息
+    /**
+     * 提示信息
+     */
     private String message;
 
-    //返回的数据
-    private Map<String,T> data = new HashMap<>();
+    /**
+     * 数据封装
+     */
+    private T data;
 
 
-    private R(){}
-
-    public static <T> R<T> ok(){
-        R<T> r = new R<>();
-        r.success(true);
-        r.code(ResultCode.SUCCESS);
-        r.message("成功");
-        return r;
+    public static <T> R<T> success(){
+        return new R<>(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage(), null);
     }
 
 
-    public static <T> R<T> error(){
-        R<T> r = new R<>();
-        r.success(false);
-        r.code(ResultCode.ERROR);
-        r.message("失败");
-        return r;
+
+    /**
+     * 成功返回结果
+     * @param message 提示信息
+     */
+    public static <T> R<T> success(String message){
+        return new R<>(ResultCode.SUCCESS.getCode(),message, null);
+    }
+
+    /**
+     * 成功返回结果
+     * @param data 获取的数据
+     */
+    public static <T> R<T> success(T data){
+        return new R<>(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage(), data);
     }
 
 
-    public static <T> R<T> error(Integer code,String message){
-        R<T> r = new R<>();
-        r.success(false);
-        r.code(code);
-        r.message(message);
-        return r;
-    }
-
-    public R<T> success(Boolean success) {
-        this.success = success;
-        return this;
-    }
-
-    public R<T> code(Integer code) {
-        this.code = code;
-        return this;
-    }
-
-    public R<T> message(String message) {
-        this.message = message;
-        return this;
+    /**
+     * 成功返回结果
+     * @param data 获取的数据
+     * @param  message 提示信息
+     */
+    public static <T> R<T> success(String message,T data){
+        return new R<>(ResultCode.SUCCESS.getCode(),message, data);
     }
 
 
-    public R<T> data(String key, T value){
-        this.data.put(key, value);
-        return this;
+    public static <T> R<T> failed(){
+        return new R<>(ResultCode.FAILED.getCode(),ResultCode.SUCCESS.getMessage(), null);
     }
 
-    public R<T> data(Map<String, T> map){
-        this.setData(map);
-        return this;
+
+    /**
+     * 失败返回结果
+     * @param  message 提示信息
+     */
+    public static <T> R<T> failed(String message){
+        return new R<>(ResultCode.FAILED.getCode(),message,null);
+    }
+
+
+
+
+    /**
+     * 参数验证失败返回结果
+     */
+    public static <T> R<T> validateFailed(){
+        return new R<>(ResultCode.FAILED.getCode(),ResultCode.VALIDATE_FAILED.getMessage(), null);
+    }
+
+    /**
+     * 参数验证失败返回结果
+     * @param message 提示信息
+     */
+    public static <T> R<T> validateFailed(String message){
+        return new R<>(ResultCode.FAILED.getCode(),message, null);
+    }
+
+
+    /**
+     * 未认证返回结果
+     */
+    public static <T> R<T> unauthorized(){
+        return new R<>(ResultCode.UNAUTHORIZED.getCode(),ResultCode.UNAUTHORIZED.getMessage(), null);
+    }
+
+    /**
+     * 未认证返回结果
+     * @param message 提示信息
+     */
+    public static <T> R<T> unauthorized(String message){
+        return new R<>(ResultCode.UNAUTHORIZED.getCode(),message, null);
+    }
+
+    /**
+     * 未授权返回结果
+     */
+    public static <T> R<T> forbidden(){
+        return new R<>(ResultCode.FORBIDDEN.getCode(),ResultCode.FORBIDDEN.getMessage(), null);
+    }
+
+    /**
+     * 未授权返回结果
+     * @param message 提示信息
+     */
+    public static <T> R<T> forbidden(String message){
+        return new R<>(ResultCode.FORBIDDEN.getCode(),message, null);
     }
 }

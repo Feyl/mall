@@ -22,6 +22,12 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * 访问过滤器
+ *
+ * token的校验
+ * 该类继承自BasicAuthenticationFilter，在doFilterInternal方法中，
+ * 从http头的token项读取token数据，然后用Jwts包提供的方法校验token的合法性。
+ *  如果校验通过，就认为这是一个取得授权的合法请求。
  * @author Feyl
  * @date 2021/10/27 0:18
  */
@@ -36,13 +42,17 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
     }
 
 
-   /* @Override
+    /**
+     * 针对使用用户名和密码验证的请求按照约定进行了一定的封装：将username赋值到了principal ，
+     * 而将password赋值到了credentials,按照流程，将其传递给AuthenticationManager调用身份验证核心完成相关工作。
+     */
+    @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
         if (authentication != null){
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }else{
-            ResponseUtil.out(resp, R.error().code(408).message("token过期"));
+            ResponseUtil.out(resp, R.unauthorized());
         }
         chain.doFilter(req, resp);
     }
@@ -54,13 +64,13 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         }
 
         if(token!=null && !"".equals(token.trim())){
-            String email = JwtUtil.getEmailByJwtToken(token);
-            List<String> roles = roleService.selectRolesByUsername(email);
+            String username = JwtUtil.getUsernameByJwtToken(token);
+            List<String> roles = roleService.selectRolesByUsername(username);
             Collection<GrantedAuthority> authorities = PackageUtil.packageAuthorityStringToObj(roles);
-            if(StringUtils.hasLength(email)){
-                return new UsernamePasswordAuthenticationToken(email,token,authorities);
+            if(StringUtils.hasLength(username)){
+                return new UsernamePasswordAuthenticationToken(username,token,authorities);
             }
         }
         return null;
-    }*/
+    }
 }

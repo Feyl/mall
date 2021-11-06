@@ -14,12 +14,11 @@ import java.util.List;
  */
 @Data
 public class SecurityUser implements UserDetails {
+    private static final long serialVersionUID = 1L;
 
     private String username;
     private String password;
     private List<String> auths;
-
-    private static final long serialVersionUID = 1L;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

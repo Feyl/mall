@@ -16,6 +16,12 @@ import java.util.Collection;
  */
 @Component
 public class AccessDecisionManagerImpl implements AccessDecisionManager {
+
+    /**
+     *
+     * @param authentication 获取当前用户具有的权限
+     * @param collection 当前请求需要的权限
+     */
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection)
             throws AccessDeniedException, InsufficientAuthenticationException {

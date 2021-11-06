@@ -18,7 +18,7 @@ import java.io.IOException;
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     @Override
-    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-        ResponseUtil.out(httpServletResponse, R.error(403,"权限不足"));
+    public void handle(HttpServletRequest req, HttpServletResponse resp, AccessDeniedException e) throws IOException, ServletException {
+        ResponseUtil.out(resp, R.forbidden());
     }
 }

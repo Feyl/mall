@@ -42,6 +42,10 @@ public class SysUser implements Serializable {
     @TableField("password")
     private String password;
 
+    @ApiModelProperty(value = "头像")
+    @TableField("avatar")
+    private String avatar;
+
     @ApiModelProperty(value = "姓名")
     @TableField("name")
     private String name;
@@ -51,7 +55,7 @@ public class SysUser implements Serializable {
     private String telephone;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
-    @TableField("is_deleted")
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     @TableLogic
     private Integer isDeleted;
 

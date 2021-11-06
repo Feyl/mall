@@ -31,6 +31,8 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     private UserDetailsService userDetailsService;
     private RedisTemplate redisTemplate;
     private FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSourceImpl;
@@ -39,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SysRoleService sysRoleService;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService, RedisTemplate redisTemplate, FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSourceImpl, AccessDecisionManagerImpl accessDecisionManager, AccessDeniedHandlerImpl accessDeniedHandler, SysRoleService sysRoleService) {
+    public SecurityConfig(BCryptPasswordEncoder bCryptPasswordEncoder,UserDetailsService userDetailsService, RedisTemplate redisTemplate, FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSourceImpl, AccessDecisionManagerImpl accessDecisionManager, AccessDeniedHandlerImpl accessDeniedHandler, SysRoleService sysRoleService) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userDetailsService = userDetailsService;
         this.redisTemplate = redisTemplate;
         this.filterInvocationSecurityMetadataSourceImpl = filterInvocationSecurityMetadataSourceImpl;
@@ -77,7 +80,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -87,10 +91,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
+/*    @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
     @Override
     protected UserDetailsService userDetailsService() {

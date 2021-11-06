@@ -13,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SysUserService extends IService<SysUser> {
 
-    SysUser selectUserByUsername(String s);
+    SysUser selectUserByUsername(String username);
 }

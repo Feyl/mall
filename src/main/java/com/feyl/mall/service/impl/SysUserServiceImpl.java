@@ -1,5 +1,6 @@
 package com.feyl.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.feyl.mall.entity.SysUser;
 import com.feyl.mall.mapper.SysUserMapper;
 import com.feyl.mall.service.SysUserService;
@@ -18,7 +19,9 @@ import org.springframework.stereotype.Service;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     @Override
-    public SysUser selectUserByUsername(String s) {
-        return null;
+    public SysUser selectUserByUsername(String username) {
+        QueryWrapper<SysUser> qw = new QueryWrapper<>();
+        qw.eq("username",username);
+        return baseMapper.selectOne(qw);
     }
 }

@@ -36,14 +36,14 @@ public class SysRolePermission implements Serializable {
 
     @ApiModelProperty(value = "角色ID")
     @TableField("role_id")
-    private Integer roleId;
+    private Long roleId;
 
     @ApiModelProperty(value = "权限ID")
     @TableField("permission_id")
-    private Integer permissionId;
+    private Long permissionId;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
-    @TableField("is_deleted")
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     @TableLogic
     private Integer isDeleted;
 

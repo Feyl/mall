@@ -26,6 +26,6 @@ public class LogoutHandlerImpl implements LogoutHandler {
         if(token!=null){
             redisTemplate.delete("token:"+token);
         }
-        ResponseUtil.out(resp, R.ok());
+        ResponseUtil.out(resp, R.success("注销登录成功"));
     }
 }

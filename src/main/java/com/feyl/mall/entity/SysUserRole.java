@@ -28,6 +28,11 @@ import lombok.EqualsAndHashCode;
 @ApiModel(value="SysUserRole对象", description="用户角色关联表")
 public class SysUserRole implements Serializable {
 
+    public SysUserRole(Long userId, Long roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
+
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户角色关联ID")
@@ -43,7 +48,7 @@ public class SysUserRole implements Serializable {
     private Long roleId;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
-    @TableField("is_deleted")
+    @TableField(value = "is_deleted",fill = FieldFill.INSERT)
     @TableLogic
     private Integer isDeleted;
 

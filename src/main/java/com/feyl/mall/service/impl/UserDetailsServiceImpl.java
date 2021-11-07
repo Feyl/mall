@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.service.impl;
 
 import com.feyl.mall.entity.SysUser;
@@ -11,10 +12,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 10:30
- */
+ *//*
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
@@ -31,4 +34,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setAuths(sysRoleService.selectRolesByUsername(s));
         return user;
     }
-}
+}*/

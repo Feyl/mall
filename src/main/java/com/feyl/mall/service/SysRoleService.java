@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface SysRoleService extends IService<SysRole> {
 
-    List<String> selectRolesByUsername(String s);
+    List<String> selectRolesByUsername(String username);
 }

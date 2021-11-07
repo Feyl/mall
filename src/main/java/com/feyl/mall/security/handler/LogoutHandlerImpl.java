@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.handler;
 
 import com.feyl.mall.common.result.R;
@@ -9,10 +10,12 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:19
- */
+ *//*
+
 public class LogoutHandlerImpl implements LogoutHandler {
     private RedisTemplate redisTemplate;
 
@@ -29,3 +32,4 @@ public class LogoutHandlerImpl implements LogoutHandler {
         ResponseUtil.out(resp, R.success("注销登录成功"));
     }
 }
+*/

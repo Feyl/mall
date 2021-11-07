@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.common.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -19,10 +20,12 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:06
- */
+ *//*
+
 @Configuration
 @EnableCaching //开启缓存
 public class RedisConfig extends CachingConfigurerSupport {
@@ -66,4 +69,4 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .build();
         return cacheManager;
     }
-}
+}*/

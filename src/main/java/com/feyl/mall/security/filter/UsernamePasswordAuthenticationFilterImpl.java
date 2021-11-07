@@ -1,4 +1,5 @@
 package com.feyl.mall.security.filter;
+/*
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.feyl.mall.common.jwt.JwtUtil;
@@ -18,11 +19,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
+*/
 /**
+ *
+ * 登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
+ * 认证操作全靠这个过滤器，默认匹配URL为/login且必须为POST请求
  * @author Feyl
  * @date 2021/10/27 0:18
- */
+ *//*
+
 public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
@@ -31,7 +38,7 @@ public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAu
     public UsernamePasswordAuthenticationFilterImpl(AuthenticationManager authenticationManager, RedisTemplate redisTemplate) {
         this.authenticationManager = authenticationManager;
         this.redisTemplate = redisTemplate;
-        this.setPostOnly(true);
+        this.setPostOnly(false);
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/user/login","POST"));
     }
 
@@ -39,7 +46,7 @@ public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAu
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse resp) throws AuthenticationException {
         try {
             SecurityUser user = new ObjectMapper().readValue(req.getInputStream(), SecurityUser.class);
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(), new ArrayList<>()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,3 +66,4 @@ public class UsernamePasswordAuthenticationFilterImpl extends UsernamePasswordAu
         ResponseUtil.out(resp, R.unauthorized("账号信息有误,请检查用户名或密码是否正确"));
     }
 }
+*/

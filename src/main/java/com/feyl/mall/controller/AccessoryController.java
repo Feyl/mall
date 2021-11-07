@@ -1,9 +1,13 @@
 package com.feyl.mall.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.feyl.mall.common.result.R;
+import com.feyl.mall.entity.vo.AccessoryVO;
+import com.feyl.mall.service.AccessoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -17,5 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/accessory")
 public class AccessoryController {
 
+    @Autowired
+    private AccessoryService accessoryService;
+
+    @GetMapping("/getAccessoriesByProductId/{productId}")
+    public R<List<AccessoryVO>> getAccessoriesByProductId(@PathVariable("productId") Long productId){
+        List<AccessoryVO> accessoryVOs = accessoryService.selectAccessoriesByProductId(productId);
+        if(accessoryVOs.isEmpty()) R.failed("查询的附属商品为空");
+        return R.success("附属商品",accessoryVOs);
+    }
 }
 

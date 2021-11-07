@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.controller;
 
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 
+*/
 /**
  * <p>
  * 用户表 前端控制器
@@ -22,7 +24,8 @@ import javax.annotation.Resource;
  *
  * @author feyl
  * @since 2021-10-26
- */
+ *//*
+
 @RestController
 @RequestMapping("/admin/user")
 @Api(tags = "SysUserController")
@@ -37,7 +40,6 @@ public class SysUserController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/register/{type}")
-
     @ApiOperation("用户注册")
     public R register(@RequestBody SysUser sysUser, @PathVariable("type") Long type){
         if(sysUserService.selectUserByUsername(sysUser.getUsername())!=null){
@@ -52,3 +54,4 @@ public class SysUserController {
     }
 }
 
+*/

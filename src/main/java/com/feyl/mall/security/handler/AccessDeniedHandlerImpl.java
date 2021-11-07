@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.handler;
 
 import com.feyl.mall.common.result.R;
@@ -11,14 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:19
- */
+ *//*
+
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest req, HttpServletResponse resp, AccessDeniedException e) throws IOException, ServletException {
         ResponseUtil.out(resp, R.forbidden());
     }
-}
+}*/

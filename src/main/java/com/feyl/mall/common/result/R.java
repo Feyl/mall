@@ -35,7 +35,7 @@ public class R<T> {
     private T data;
 
 
-    public static <T> R<T> success(){
+    public static <T> R <T> success(){
         return new R<>(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage(), null);
     }
 
@@ -47,14 +47,6 @@ public class R<T> {
      */
     public static <T> R<T> success(String message){
         return new R<>(ResultCode.SUCCESS.getCode(),message, null);
-    }
-
-    /**
-     * 成功返回结果
-     * @param data 获取的数据
-     */
-    public static <T> R<T> success(T data){
-        return new R<>(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage(), data);
     }
 
 

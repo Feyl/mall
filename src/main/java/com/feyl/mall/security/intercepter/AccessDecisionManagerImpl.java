@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.intercepter;
 
 import org.springframework.security.access.AccessDecisionManager;
@@ -10,26 +11,31 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:20
- */
+ *//*
+
 @Component
 public class AccessDecisionManagerImpl implements AccessDecisionManager {
 
-    /**
+    */
+/**
      *
      * @param authentication 获取当前用户具有的权限
      * @param collection 当前请求需要的权限
-     */
+     *//*
+
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection)
             throws AccessDeniedException, InsufficientAuthenticationException {
+        // 当前用户所具有的权限
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (ConfigAttribute configAttribute : collection) {
             String needAuth= configAttribute.getAttribute();
             for (GrantedAuthority authority : authorities) {
-                if ("admin".equals(authority.getAuthority())){
+                if ("Administrator".equals(authority.getAuthority())){
                     return;
                 }
                 if(needAuth.equals(authority.getAuthority())){
@@ -50,3 +56,4 @@ public class AccessDecisionManagerImpl implements AccessDecisionManager {
         return false;
     }
 }
+*/

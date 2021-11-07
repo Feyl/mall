@@ -1,5 +1,6 @@
 package com.feyl.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.feyl.mall.entity.SysRole;
 import com.feyl.mall.mapper.SysRoleMapper;
 import com.feyl.mall.service.SysRoleService;
@@ -20,7 +21,7 @@ import java.util.List;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
 
     @Override
-    public List<String> selectRolesByUsername(String s) {
-        return null;
+    public List<String> selectRolesByUsername(String username) {
+        return baseMapper.selectRolesByUsername(username);
     }
 }

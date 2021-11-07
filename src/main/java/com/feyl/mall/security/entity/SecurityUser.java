@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.entity;
 
 import com.feyl.mall.security.util.PackageUtil;
@@ -8,10 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:17
- */
+ *//*
+
 @Data
 public class SecurityUser implements UserDetails {
     private static final long serialVersionUID = 1L;
@@ -57,3 +60,4 @@ public class SecurityUser implements UserDetails {
         return true;
     }
 }
+*/

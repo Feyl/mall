@@ -44,8 +44,8 @@ public class Accessory implements Serializable {
     private BigDecimal price;
 
     @ApiModelProperty(value = "商品表商品ID")
-    @TableField("fruit_id")
-    private Long fruitId;
+    @TableField("product_id")
+    private Long productId;
 
     @ApiModelProperty(value = "逻辑删除：0不删除/1删除")
     @TableField(value = "is_deleted",fill = FieldFill.INSERT)

@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.filter;
 
 import com.feyl.mall.common.jwt.JwtUtil;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+*/
 /**
  * 访问过滤器
  *
@@ -30,7 +32,8 @@ import java.util.List;
  *  如果校验通过，就认为这是一个取得授权的合法请求。
  * @author Feyl
  * @date 2021/10/27 0:18
- */
+ *//*
+
 public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
     private RedisTemplate redisTemplate;
     private SysRoleService roleService;
@@ -42,10 +45,12 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
     }
 
 
-    /**
+    */
+/**
      * 针对使用用户名和密码验证的请求按照约定进行了一定的封装：将username赋值到了principal ，
      * 而将password赋值到了credentials,按照流程，将其传递给AuthenticationManager调用身份验证核心完成相关工作。
-     */
+     *//*
+
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws IOException, ServletException {
         UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
@@ -73,4 +78,4 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         }
         return null;
     }
-}
+}*/

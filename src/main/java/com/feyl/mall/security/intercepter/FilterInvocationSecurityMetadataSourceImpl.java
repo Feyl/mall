@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.intercepter;
 
 import com.feyl.mall.service.SysRolePermissionService;
@@ -12,10 +13,12 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.*;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:20
- */
+ *//*
+
 @Component
 public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocationSecurityMetadataSource {
 
@@ -61,3 +64,4 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
         return FilterInvocation.class.isAssignableFrom(aClass);
     }
 }
+*/

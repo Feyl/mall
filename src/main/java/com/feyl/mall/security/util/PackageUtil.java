@@ -1,3 +1,4 @@
+/*
 package com.feyl.mall.security.util;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -8,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+*/
 /**
  * @author Feyl
  * @date 2021/10/27 0:36
- */
+ *//*
+
 public class PackageUtil {
     public static Collection<GrantedAuthority> packageAuthorityStringToObj(List<String> roles){
         Collection<GrantedAuthority> authorities = new ArrayList<>();
@@ -25,3 +28,4 @@ public class PackageUtil {
         return authorities;
     }
 }
+*/

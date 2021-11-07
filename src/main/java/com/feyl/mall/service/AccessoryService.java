@@ -2,6 +2,9 @@ package com.feyl.mall.service;
 
 import com.feyl.mall.entity.Accessory;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.feyl.mall.entity.vo.AccessoryVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AccessoryService extends IService<Accessory> {
 
+    List<AccessoryVO> selectAccessoriesByProductId(Long productId);
 }

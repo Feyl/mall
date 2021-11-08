@@ -2,6 +2,7 @@ package com.feyl.mall.service;
 
 import com.feyl.mall.entity.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.feyl.mall.entity.dto.ProductQueryDto;
 import com.feyl.mall.entity.vo.ProductVO;
 
 import java.util.List;
@@ -17,4 +18,6 @@ import java.util.List;
 public interface ProductService extends IService<Product> {
 
     List<ProductVO> VOlist();
+
+    List<ProductVO> getVOsByCondition(ProductQueryDto productQueryDto);
 }

@@ -4,6 +4,7 @@ package com.feyl.mall.controller;
 import com.feyl.mall.common.result.R;
 import com.feyl.mall.entity.Accessory;
 import com.feyl.mall.entity.Product;
+import com.feyl.mall.entity.dto.ProductQueryDto;
 import com.feyl.mall.entity.vo.ProductAccessory;
 import com.feyl.mall.entity.vo.ProductVO;
 import com.feyl.mall.service.AccessoryService;
@@ -67,9 +68,6 @@ public class ProductController {
         else return R.failed("更新商品信息失败");
     }
 
-
-
-
     @GetMapping("/getAllInfo")
     @ApiOperation("获取所有商品信息")
     public R<List<ProductVO>>  getAllVOInfo(){
@@ -77,5 +75,15 @@ public class ProductController {
         if(productVOs.isEmpty()) return R.failed("数据库中商品信息为空");
         return R.success("所有商品信息",productVOs);
     }
+
+
+    @PostMapping("/getInfoByCondition")
+    @ApiOperation("根据条件获取商品信息")
+    public R<List<ProductVO>> getVOsByCondition(@RequestBody ProductQueryDto productQueryDto){
+        List<ProductVO> productVOs = productService.getVOsByCondition(productQueryDto);
+        if(productVOs.isEmpty()) return R.failed("查询的商品信息不存在");
+        else return R.success("条件查询的商品信息",productVOs);
+    }
+
 }
 

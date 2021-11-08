@@ -15,8 +15,6 @@ import java.util.Date;
 public class ProductVO {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "商品ID")
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private String name;

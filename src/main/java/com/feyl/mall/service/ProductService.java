@@ -1,11 +1,14 @@
 package com.feyl.mall.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.feyl.mall.entity.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.feyl.mall.entity.dto.ProductQueryDto;
 import com.feyl.mall.entity.vo.ProductVO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,4 +23,6 @@ public interface ProductService extends IService<Product> {
     List<ProductVO> VOlist();
 
     List<ProductVO> getVOsByCondition(ProductQueryDto productQueryDto);
+
+    Map<String,Object> getPageOfVOsInfoByCondition(Page<Product> page, ProductQueryDto productQueryDto);
 }

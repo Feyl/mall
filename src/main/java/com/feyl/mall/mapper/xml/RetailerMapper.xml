@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.feyl.mall.mapper.RetailerMapper">
 
+    <!--<select id="selectPageOfInfoByCondition" resultType="com.feyl.mall.entity.Retailer">
+        SELECT * FROM retailer ${ew.customSqlSegment}
+    </select>-->
 </mapper>

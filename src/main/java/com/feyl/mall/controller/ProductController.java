@@ -1,6 +1,8 @@
 package com.feyl.mall.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.feyl.mall.common.result.R;
 import com.feyl.mall.entity.Accessory;
 import com.feyl.mall.entity.Product;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -68,6 +71,11 @@ public class ProductController {
         else return R.failed("更新商品信息失败");
     }
 
+
+    /**
+     * 这个接口（方法）很少用到
+     * @return
+     */
     @GetMapping("/getAllInfo")
     @ApiOperation("获取所有商品信息")
     public R<List<ProductVO>>  getAllVOInfo(){
@@ -75,6 +83,14 @@ public class ProductController {
         if(productVOs.isEmpty()) return R.failed("数据库中商品信息为空");
         return R.success("所有商品信息",productVOs);
     }
+
+    @PostMapping("/getPageOfInfo/{currentPage}/{pageSize}")
+    @ApiOperation("根据条件分页查询商品信息")
+    public R<Map<String,Object>> getPageOfInfoByCondition(@PathVariable("currentPage")Integer currentPage,@PathVariable("pageSize") Integer pageSize,@RequestBody ProductQueryDto productQueryDto){
+        Map<String, Object> pageOfVOsInfoByCondition = productService.getPageOfVOsInfoByCondition(new Page<Product>(currentPage, pageSize), productQueryDto);
+        return R.success("根据条件查询的当页商品信息",pageOfVOsInfoByCondition);
+    }
+
 
 
     @PostMapping("/getInfoByCondition")

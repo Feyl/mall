@@ -1,6 +1,8 @@
 package com.feyl.mall.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.feyl.mall.entity.Product;
 import com.feyl.mall.entity.Retailer;
 import com.feyl.mall.entity.dto.RetailerQueryDto;
@@ -13,7 +15,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -43,6 +47,25 @@ public class RetailerServiceImpl extends ServiceImpl<RetailerMapper, Retailer> i
         if(retailerQueryDto.getEndTime()!=null) qw.le("create_time",retailerQueryDto.getEndTime());
         List<Retailer> retailers = baseMapper.selectList(qw);
         return packageDaoToVo(retailers);
+    }
+
+    @Override
+    public Map<String, Object> getPageOfVOsInfoByCondition(Page<Retailer> page, RetailerQueryDto retailerQueryDto) {
+        QueryWrapper<Retailer> qw = new QueryWrapper<>();
+        if(retailerQueryDto.getName()!=null) qw.like("name",retailerQueryDto.getName());
+        if(retailerQueryDto.getTelephone()!=null) qw.like("telephone",retailerQueryDto.getTelephone());
+        if(retailerQueryDto.getAddress()!=null) qw.ge("address",retailerQueryDto.getAddress());
+        if(retailerQueryDto.getStatus()!=null) qw.eq("status",retailerQueryDto.getStatus());
+        if(retailerQueryDto.getStartTime()!=null) qw.ge("create_time",retailerQueryDto.getStartTime());
+        if(retailerQueryDto.getEndTime()!=null) qw.le("create_time",retailerQueryDto.getEndTime());
+        IPage<Retailer> retailerIPage = baseMapper.selectPageOfInfoByCondition(page,qw);
+        Long retailerTotalNumber = retailerIPage.getTotal();
+        List<Retailer> retailers = retailerIPage.getRecords();
+        List<RetailerVO> retailerVOs = packageDaoToVo(retailers);
+        Map<String, Object> pageOfVOsInfo = new HashMap<>();
+        pageOfVOsInfo.put("retailerTotalNumber",retailerTotalNumber);
+        pageOfVOsInfo.put("retailersInfo",retailerVOs);
+        return pageOfVOsInfo;
     }
 
 

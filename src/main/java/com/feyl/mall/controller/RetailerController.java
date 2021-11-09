@@ -1,8 +1,11 @@
 package com.feyl.mall.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.feyl.mall.common.result.R;
+import com.feyl.mall.entity.Product;
 import com.feyl.mall.entity.Retailer;
+import com.feyl.mall.entity.dto.ProductQueryDto;
 import com.feyl.mall.entity.dto.RetailerQueryDto;
 import com.feyl.mall.entity.vo.RetailerVO;
 import com.feyl.mall.service.RetailerService;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -59,6 +63,15 @@ public class RetailerController {
         return R.success("所有零售商信息",retailerVOs);
     }
 
+
+    @PostMapping("/getPageOfInfo/{currentPage}/{pageSize}")
+    @ApiOperation("根据条件分页查询商品信息")
+    public R<Map<String,Object>> getPageOfInfoByCondition(@PathVariable("currentPage")Integer currentPage, @PathVariable("pageSize") Integer pageSize, @RequestBody RetailerQueryDto retailerQueryDto){
+        Map<String, Object> pageOfVOsInfoByCondition = retailService.getPageOfVOsInfoByCondition(new Page<Retailer>(currentPage, pageSize), retailerQueryDto);
+        return R.success("根据条件查询的当页零售商信息",pageOfVOsInfoByCondition);
+    }
+
+
     @PostMapping("/getInfoByCondition")
     @ApiOperation("根据条件获取零售商信息")
     public R<List<RetailerVO>> getVOsByCondition(@RequestBody RetailerQueryDto retailerQueryDto){
@@ -66,5 +79,6 @@ public class RetailerController {
         if(retailerVOs.isEmpty()) return R.failed("查询的零售商信息不存在");
         else return R.success("条件查询的零售商信息",retailerVOs);
     }
+
 }
 
